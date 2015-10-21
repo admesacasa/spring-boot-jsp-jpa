@@ -23,37 +23,39 @@ Abaixo segue o que será necessário para a realização do teste, possibilitand
  
 Outras informações serão enviadas no e-mail juntamente com o teste.
 
+# Script do banco de dados:
+
+* Este script criará o schema "testedsl" no usuário/banco corrente e em seguida criará as tabelas necessárias.
+* A estrutura criada não deve ser alterada!
+
+`CREATE SCHEMA testedsl;`
+
+`CREATE TABLE testedsl.livro `<br/>
+`( idlivro bigserial NOT NULL,`<br/>
+`nome character varying(100),`<br/>
+`escritor character varying(100),`<br/>
+`anoedicao smallint,`<br/>
+`classificacao smallint,`<br/>
+`CONSTRAINT pk_livro PRIMARY KEY (idlivro));`<br/>
 
 
-Este script criará o schema "testedsl" no usuário/banco corrente e em seguida criará as tabelas necessárias.
-A estrutura criada não deve ser alterada!
-CREATE SCHEMA testedsl;
-
-CREATE TABLE testedsl.livro
-( idlivro bigserial NOT NULL,
-nome character varying(100),
-escritor character varying(100),
-anoedicao smallint,
-classificacao smallint,
-CONSTRAINT pk_livro PRIMARY KEY (idlivro));
-
-CREATE TABLE testedsl.pessoa
-( idpessoa bigserial NOT NULL,
-nome character varying(100) NOT NULL,
-datanascimento date,
-cpf character varying(14),
-CONSTRAINT pk_pessoa PRIMARY KEY (idpessoa));
-
-CREATE TABLE testedsl.emprestimo
-( idemprestimo bigserial NOT NULL,
-dataemprestimo date NOT NULL,
-idpessoa bigint NOT NULL,
-idlivro bigint NOT NULL,
-datahoradevolucao time without time zone,
-CONSTRAINT pk_emprestimo PRIMARY KEY (idemprestimo),
-CONSTRAINT fk_livro FOREIGN KEY (idlivro)
-REFERENCES testedsl.livro (idlivro) MATCH SIMPLE
-ON UPDATE NO ACTION ON DELETE NO ACTION,
-CONSTRAINT fk_pessoa FOREIGN KEY (idpessoa)
-REFERENCES testedsl.pessoa (idpessoa) MATCH SIMPLE
-ON UPDATE NO ACTION ON DELETE NO ACTION);
+`CREATE TABLE testedsl.pessoa`<br/>
+`( idpessoa bigserial NOT NULL,`<br/>
+ ` nome character varying(100) NOT NULL,`<br/>
+ ` datanascimento date,`<br/>
+`  cpf character varying(14),`<br/>
+ ` CONSTRAINT pk_pessoa PRIMARY KEY (idpessoa));  `<br/>
+  
+`CREATE TABLE testedsl.emprestimo`<br/>
+ `( idemprestimo bigserial NOT NULL,`<br/>
+ `  dataemprestimo date NOT NULL,`<br/>
+  ` idpessoa bigint NOT NULL,`<br/>
+   `idlivro bigint NOT NULL,`<br/>
+   `datahoradevolucao time without time zone,`<br/>
+  ` CONSTRAINT pk_emprestimo PRIMARY KEY (idemprestimo),`<br/>
+   `CONSTRAINT fk_livro FOREIGN KEY (idlivro)`<br/>
+    `   REFERENCES testedsl.livro (idlivro) MATCH SIMPLE`<br/>
+     `  ON UPDATE NO ACTION ON DELETE NO ACTION,`<br/>
+   `CONSTRAINT fk_pessoa FOREIGN KEY (idpessoa)`<br/>
+    `   REFERENCES testedsl.pessoa (idpessoa) MATCH SIMPLE`<br/>
+     `  ON UPDATE NO ACTION ON DELETE NO ACTION);`
