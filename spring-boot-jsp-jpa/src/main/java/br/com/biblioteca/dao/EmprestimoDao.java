@@ -9,7 +9,7 @@ import javax.annotation.ManagedBean;
 import br.com.bibliotea.model.Emprestimo;
 
 @ManagedBean
-public class EmprestimoDao extends JpaRepository<Emprestimo, BigInteger> {
+public class EmprestimoDao extends Repositorio<Emprestimo, BigInteger> {
 
 	public boolean temIdadeParaRetirar(Emprestimo emprestimo) {
 		Period periodo = Period.between(emprestimo.getPessoa().getDatanascimento(), LocalDate.now());

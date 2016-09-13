@@ -19,7 +19,7 @@ public class EmprestimoController {
 	public String adiciona(Emprestimo emprestimo) {
 		EmprestimoDao dao = new EmprestimoDao();
 		
-		if (dao.jaTemDoisLivros() && dao.jaEstaEmprestado() && dao.temIdadeParaRetirar()) {
+		if (dao.jaTemDoisLivros() && dao.jaEstaEmprestado() && dao.temIdadeParaRetirar(emprestimo)) {
 			dao.adiciona(emprestimo);
 			return "emprestimo-adicionado";
 		} else {

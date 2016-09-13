@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-public class JpaRepository<T1, T2> {
+public class Repositorio<T1, T2> {
 
 	Class<T1> classe;
 	EntityManager manager;

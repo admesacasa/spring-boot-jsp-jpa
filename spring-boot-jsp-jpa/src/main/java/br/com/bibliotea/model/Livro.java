@@ -65,6 +65,16 @@ public class Livro implements Serializable {
 	public void setClassificacao(Integer classificacao) {
 		this.classificacao = classificacao;
 	}
+	
+	
+
+	public BigInteger getId() {
+		return id;
+	}
+
+	public void setId(BigInteger id) {
+		this.id = id;
+	}
 
 	@Override
 	public int hashCode() {
